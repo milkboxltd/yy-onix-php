@@ -4,7 +4,6 @@ namespace AragornYang\Onix\Composites;
 
 use AragornYang\Onix\Meta\ShortTagToRefName;
 use AragornYang\Onix\Onix;
-use SimpleXMLElement;
 
 class Composite
 {
@@ -14,6 +13,8 @@ class Composite
     protected $compositePosition = '';
     /** @var Composite|null */
     protected $parent;
+    /** @var string */
+    private $productXml = '';
 
     public function __construct(Composite $parent = null)
     {
@@ -21,11 +22,11 @@ class Composite
     }
 
     /**
-     * @param  SimpleXMLElement  $xml
-     * @param  Composite|null  $parent
+     * @param \SimpleXMLElement $xml
+     * @param Composite|null $parent
      * @return static
      */
-    public static function buildFromXml(SimpleXMLElement $xml, Composite $parent = null): Composite
+    public static function buildFromXml(\SimpleXMLElement $xml, Composite $parent = null)
     {
         $isTagEdition = false;
         $onix = Onix::getInstance();
@@ -40,11 +41,6 @@ class Composite
                 $key = ShortTagToRefName::find($key);
             }
             $key = ucfirst($key);
-            if ($key === 'BASICMainSubject') {
-                $key = 'BISACMainSubject';
-            } elseif ($key === 'BASICVersion') {
-                $key = 'BISACVersion';
-            }
             $method_name = "set{$key}";
             if (method_exists($composite, $method_name)) {
                 $composite->{$method_name}($value);
@@ -54,6 +50,16 @@ class Composite
             $composite->recordUnrecognisableElement($key, $code);
         }
         return $composite;
+    }
+
+    public function setProductXml(\SimpleXMLElement $xml): void
+    {
+        $this->productXml = $xml->asXML();
+    }
+
+    public function getProductXml(): string
+    {
+        return $this->productXml;
     }
 
     protected function recordUnrecognisableElement(string $key, string $code = ''): void

@@ -3,14 +3,13 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\Website;
-use SimpleXMLElement;
 
 trait HasWebsite
 {
     /** @var array|Website */
     protected $website = [];
 
-    public function setWebsite(SimpleXMLElement $xml): void
+    public function setWebsite(\SimpleXMLElement $xml): void
     {
         $this->website[] = Website::buildFromXml($xml, $this);
     }

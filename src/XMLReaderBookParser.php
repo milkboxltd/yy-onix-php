@@ -2,8 +2,7 @@
 
 namespace AragornYang\Onix;
 
-use RuntimeException;
-use XMLReader;
+use \XMLReader;
 
 class XMLReaderBookParser extends BookParser
 {
@@ -58,7 +57,7 @@ class XMLReaderBookParser extends BookParser
                 $onix->setAsTagEdition();
                 break;
             default:
-                throw new RuntimeException(ucfirst($xml->name) . " is an invalid root element name");
+                throw new \RuntimeException(ucfirst($xml->name) . " is an invalid root element name");
         }
     }
 }

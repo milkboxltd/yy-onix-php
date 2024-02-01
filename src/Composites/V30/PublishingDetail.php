@@ -2,16 +2,16 @@
 
 namespace AragornYang\Onix\Composites\V30;
 
-use AragornYang\Onix\CodeInList;
-use AragornYang\Onix\CodeLists\CodeList46SalesRightsType;
-use AragornYang\Onix\CodeLists\CodeList91CountryCodeISO31661;
 use AragornYang\Onix\Composites\Composite;
 use AragornYang\Onix\ProductFeatures\HasCopyrightStatements;
 use AragornYang\Onix\ProductFeatures\HasImprints;
 use AragornYang\Onix\ProductFeatures\HasPublishers;
 use AragornYang\Onix\ProductFeatures\HasPublishingStatus;
 use AragornYang\Onix\ProductFeatures\HasSaleRights;
-use SimpleXMLElement;
+use AragornYang\Onix\Composites\V30\PublishingDate;
+use AragornYang\Onix\CodeInList;
+use AragornYang\Onix\CodeLists\CodeList91CountryCodeISO31661;
+use AragornYang\Onix\CodeLists\CodeList46SalesRightsType;
 
 class PublishingDetail extends Composite
 {
@@ -46,7 +46,7 @@ class PublishingDetail extends Composite
         return $this->countryOfPublication ? $this->countryOfPublication->desc() : '';
     }
 
-    public function setPublishingDate(SimpleXMLElement $xml): void
+    public function setPublishingDate(\SimpleXMLElement $xml): void
     {
         $this->publishingDate[] = PublishingDate::buildFromXml($xml, $this);
     }
@@ -56,7 +56,7 @@ class PublishingDetail extends Composite
         return $this->publishingDate;
     }
 
-    public function getPublicationDate(): ?PublishingDate
+    public function getPublcationDate(): ?PublishingDate
     {
         foreach ($this->getPublishingDate() as $publishingDate) {
             if ('01' !== $publishingDate->getPublishingDateRole()) {
@@ -69,7 +69,7 @@ class PublishingDetail extends Composite
         return null;
     }
 
-    public function getFirstPublicationDate(): ?PublishingDate
+    public function getFirstPubliсationDate(): ?PublishingDate
     {
         foreach ($this->getPublishingDate() as $publishingDate) {
             if ('11' !== $publishingDate->getPublishingDateRole()) {
@@ -82,19 +82,19 @@ class PublishingDetail extends Composite
         return null;
     }
 
-    public function getFirstPublicationDateString(): string
+    public function getFirstPublcationDateString(): string
     {
-        return $this->getFirstPublicationDate()->getDate();
+        return $this->getFirstPubliсationDate()->getDate();
     }
 
-    public function getPublicationDateString(): string
+    public function getPublcationDateString(): string
     {
-        return $this->getPublicationDate()->getDate();
+        return $this->getPublcationDate()->getDate();
     }
 
-    public function getPublicationDateRoleDesc(): string
+    public function getPublcationDateDesc(): string
     {
-        return $this->getPublicationDate()->getPublishingDateRoleDesc();
+        return $this->getPublcationDate()->getProductXml();
     }
 
     public function setROWSalesRightsType(string $code): void

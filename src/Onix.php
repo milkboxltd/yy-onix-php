@@ -3,7 +3,6 @@
 namespace AragornYang\Onix;
 
 use AragornYang\Onix\Composites\Product;
-use RuntimeException;
 use SimpleXMLElement;
 
 /**
@@ -83,7 +82,7 @@ final class Onix
 
     public function __wakeup()
     {
-        throw new RuntimeException('Try to unserialize a singleton instance');
+        throw new \RuntimeException('Try to unserialize a singleton instance');
     }
 
     public function version(): string

@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\Stock;
-use SimpleXMLElement;
 
 trait HasStock
 {
@@ -15,7 +14,7 @@ trait HasStock
         return $this->stock;
     }
 
-    public function setStock(SimpleXMLElement $xml): void
+    public function setStock(\SimpleXMLElement $xml): void
     {
         $this->stock = Stock::buildFromXml($xml, $this);
     }

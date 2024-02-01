@@ -2,8 +2,6 @@
 
 namespace AragornYang\Onix\ProductFeatures;
 
-use SimpleXMLElement;
-
 trait HasNumberOfPages
 {
     /** @var int */
@@ -14,7 +12,7 @@ trait HasNumberOfPages
         return $this->numberOfPages;
     }
 
-    public function setNumberOfPages(SimpleXMLElement $numberOfPages): void
+    public function setNumberOfPages(\SimpleXMLElement $numberOfPages): void
     {
         $this->numberOfPages = (int)$numberOfPages;
     }

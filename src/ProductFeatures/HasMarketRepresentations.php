@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\MarketRepresentation;
-use SimpleXMLElement;
 
 trait HasMarketRepresentations
 {
@@ -15,7 +14,7 @@ trait HasMarketRepresentations
         return $this->marketRepresentation;
     }
 
-    public function setMarketRepresentation(SimpleXMLElement $xml): void
+    public function setMarketRepresentation(\SimpleXMLElement $xml): void
     {
         $this->marketRepresentation[] = MarketRepresentation::buildFromXml($xml, $this);
     }

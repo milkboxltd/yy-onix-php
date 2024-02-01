@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\NotForSale;
-use SimpleXMLElement;
 
 trait HasNotForSales
 {
@@ -15,7 +14,7 @@ trait HasNotForSales
         return $this->notForSales;
     }
 
-    public function setNotForSale(SimpleXMLElement $xml): void
+    public function setNotForSale(\SimpleXMLElement $xml): void
     {
         $this->notForSales[] = NotForSale::buildFromXml($xml, $this);
     }

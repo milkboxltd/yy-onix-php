@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\OtherText;
-use SimpleXMLElement;
 
 trait HasOtherTexts
 {
@@ -18,7 +17,7 @@ trait HasOtherTexts
         return $this->otherTexts;
     }
 
-    public function setOtherText(SimpleXMLElement $xml): void
+    public function setOtherText(\SimpleXMLElement $xml): void
     {
         $this->otherTexts[] = OtherText::buildFromXml($xml, $this);
     }

@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\ProductIdentifier;
-use SimpleXMLElement;
 
 trait HasProductIdentifiers
 {
@@ -32,7 +31,7 @@ trait HasProductIdentifiers
         return $this->productIdentifiers;
     }
 
-    public function setProductIdentifier(SimpleXMLElement $xml): void
+    public function setProductIdentifier(\SimpleXMLElement $xml): void
     {
         /** @var ProductIdentifier $identifier */
         $identifier = ProductIdentifier::buildFromXml($xml, $this);

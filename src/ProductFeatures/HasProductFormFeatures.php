@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\ProductFormFeature;
-use SimpleXMLElement;
 
 trait HasProductFormFeatures
 {
@@ -18,7 +17,7 @@ trait HasProductFormFeatures
         return $this->productFormFeatures;
     }
 
-    public function setProductFormFeature(SimpleXMLElement $xml): void
+    public function setProductFormFeature(\SimpleXMLElement $xml): void
     {
         $this->productFormFeatures[] = ProductFormFeature::buildFromXml($xml, $this);
     }

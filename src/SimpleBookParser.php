@@ -28,5 +28,6 @@ class SimpleBookParser extends BookParser
     public function parseFile(string $file): void
     {
         $this->parseString(file_get_contents($file));
+
     }
 }

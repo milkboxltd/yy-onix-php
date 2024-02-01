@@ -2,7 +2,6 @@
 
 namespace AragornYang\Onix\Tests\Units\CodeLists;
 
-use AragornYang\Onix\CodeLists\CodeListGenerator;
 use AragornYang\Onix\Tests\TestCase;
 
 class CodeListGeneratorTest extends TestCase
@@ -17,7 +16,7 @@ class CodeListGeneratorTest extends TestCase
     /** @test */
     public function generates_properly(): void
     {
-        $content = (new CodeListGenerator())->parseString(<<<TAG
+        $content = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->parseString(<<<TAG
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -84,7 +83,7 @@ TAG
         ];
         $this->assertSame($expected, $content);
 
-        $content2 = (new CodeListGenerator())->generateFromArray($expected);
+        $content2 = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->generateFromArray($expected);
         $expected2 = <<<PHP
 <?php
 
@@ -109,7 +108,7 @@ PHP;
     /** @test */
     public function removes_non_alphanumeric_letters_when_generating_list_name_properly(): void
     {
-        $content = (new CodeListGenerator())->parseString(<<<TAG
+        $content = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->parseString(<<<TAG
 <html>
 	<body>
 		<div class="listHeading">ONIX Code Lists Issue 36, January 2017<br>List 22: Language &nbsp;&#8211; role ,/-</div>
@@ -124,7 +123,7 @@ TAG
         ];
         $this->assertSame($expected, $content);
 
-        $content2 = (new CodeListGenerator())->generateFromArray($expected);
+        $content2 = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->generateFromArray($expected);
         $expected2 = <<<PHP
 <?php
 
@@ -144,7 +143,7 @@ PHP;
     /** @test */
     public function removes_last_code_word_if_not_in_ref_name_when_generating_list_name(): void
     {
-        $content = (new CodeListGenerator())->parseString(<<<TAG
+        $content = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->parseString(<<<TAG
 <html>
 	<body>
 		<div class="listHeading">ONIX Code Lists Issue 36, January 2017<br>List 22: Language role code</div>
@@ -159,7 +158,7 @@ TAG
         ];
         $this->assertSame($expected, $content);
 
-        $content2 = (new CodeListGenerator())->generateFromArray($expected);
+        $content2 = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->generateFromArray($expected);
         $expected2 = <<<PHP
 <?php
 
@@ -179,7 +178,7 @@ PHP;
     /** @test */
     public function does_not_remove_last_code_word_if_in_ref_name_when_generating_list_name(): void
     {
-        $content = (new CodeListGenerator())->parseString(<<<TAG
+        $content = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->parseString(<<<TAG
 <html>
 	<body>
 		<div class="listHeading">ONIX Code Lists Issue 36, January 2017<br>List 28: Audience code</div>
@@ -194,7 +193,7 @@ TAG
         ];
         $this->assertSame($expected, $content);
 
-        $content2 = (new CodeListGenerator())->generateFromArray($expected);
+        $content2 = (new \AragornYang\Onix\CodeLists\CodeListGenerator())->generateFromArray($expected);
         $expected2 = <<<PHP
 <?php
 

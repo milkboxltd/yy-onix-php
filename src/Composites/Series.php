@@ -4,12 +4,10 @@ namespace AragornYang\Onix\Composites;
 
 use AragornYang\Onix\ProductFeatures\HasContributors;
 use AragornYang\Onix\ProductFeatures\HasTitles;
-use SimpleXMLElement;
 
 class Series extends Composite
 {
     use HasContributors, HasTitles;
-
     /** @var SeriesIdentifier[] */
     protected $seriesIdentifiers = [];
     protected $titleOfSeries = '';
@@ -20,7 +18,7 @@ class Series extends Composite
         return $this->seriesIdentifiers[$type] ?? null;
     }
 
-    public function setSeriesIdentifier(SimpleXMLElement $xml): void
+    public function setSeriesIdentifier(\SimpleXMLElement $xml): void
     {
         /** @var SeriesIdentifier $identifier */
         $identifier = SeriesIdentifier::buildFromXml($xml, $this);

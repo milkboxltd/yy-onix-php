@@ -11,17 +11,16 @@ use AragornYang\Onix\CodeLists\CodeList57UnpricedItemType;
 use AragornYang\Onix\CodeLists\CodeList65ProductAvailability;
 use AragornYang\Onix\CodeLists\CodeList91CountryCodeISO31661;
 use AragornYang\Onix\CodeLists\CodeList93SupplierRole;
-use AragornYang\Onix\Composites\V30\Supplier;
 use AragornYang\Onix\Composites\V30\SupplyDate;
 use AragornYang\Onix\ProductFeatures\HasExpectedShipDate;
 use AragornYang\Onix\ProductFeatures\HasStock;
 use AragornYang\Onix\ProductFeatures\HasWebsite;
-use SimpleXMLElement;
+use AragornYang\Onix\Composites\Reissue;
+use AragornYang\Onix\Composites\V30\Supplier;
 
 class SupplyDetail extends Composite
 {
     use HasExpectedShipDate, HasStock, HasWebsite;
-
     /** @var CodeInList */
     protected $supplierRole;
     /** @var string */
@@ -49,8 +48,8 @@ class SupplyDetail extends Composite
     /** @var Price[] */
     protected $prices = [];
 
-    /** @var CodeInList */
-    protected $dateFormat;
+    /** @var string */
+    protected $dateFormat = '';
 
     /** @var string */
     protected $onSaleDate = '';
@@ -173,7 +172,7 @@ class SupplyDetail extends Composite
         return $this->prices;
     }
 
-    public function setPrice(SimpleXMLElement $xml): void
+    public function setPrice(\SimpleXMLElement $xml): void
     {
         $this->prices[] = Price::buildFromXml($xml, $this);
     }
@@ -245,22 +244,22 @@ class SupplyDetail extends Composite
         $this->dateFormat = new CodeInList(CodeList55DateFormat::class, $code);
     }
 
-    public function getDateFormatCode(): string
+    public function getDateFormat()
     {
         return $this->dateFormat ? $this->dateFormat->code() : '';
     }
 
-    public function getDateFormatDesc(): string
+    public function getDateFormatDesc()
     {
         return $this->dateFormat ? $this->dateFormat->desc() : '';
     }
 
-    public function setOnSaleDate(string $onSaleDate): void
+    public function setOnSaleDate(string $onSaleDate): void 
     {
         $this->onSaleDate = $onSaleDate;
     }
 
-    public function getOnSaleDate(): string
+    public function getOnSaleDate(): string 
     {
         return $this->onSaleDate;
     }
@@ -305,7 +304,7 @@ class SupplyDetail extends Composite
         $this->lastDateForReturns = $value;
     }
 
-    public function setUnpricedItemType(string $code): void
+    public function setUnpricedItemType(string $code): void 
     {
         $this->unpricedItemType = new CodeInList(CodeList57UnpricedItemType::class, $code);
     }
@@ -330,7 +329,7 @@ class SupplyDetail extends Composite
         return $this->supplierEANLocationNumber;
     }
 
-    public function setReissue(SimpleXMLElement $xml): void
+    public function setReissue(\SimpleXMLElement $xml): void
     {
         $this->reissue = Reissue::buildFromXml($xml, $this);
     }
@@ -353,7 +352,7 @@ class SupplyDetail extends Composite
         return $this->supplyToCountryExcluded;
     }
 
-    public function setSupplier(SimpleXMLElement $xml): void
+    public function setSupplier(\SimpleXMLElement $xml): void
     {
         $this->suppliers[] = Supplier::buildFromXml($xml, $this);
     }
@@ -363,7 +362,7 @@ class SupplyDetail extends Composite
         return $this->suppliers;
     }
 
-    public function setSupplyDate(SimpleXMLElement $xml): void
+    public function setSupplyDate(\SimpleXMLElement $xml): void
     {
         $this->supplyDate[] = SupplyDate::buildFromXml($xml, $this);
     }

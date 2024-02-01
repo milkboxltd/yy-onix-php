@@ -2,7 +2,7 @@
 
 namespace AragornYang\Onix\Composites;
 
-use SimpleXMLElement;
+use AragornYang\Onix\Composites\CopyrightOwner;
 
 class CopyrightStatement extends Composite
 {
@@ -27,7 +27,7 @@ class CopyrightStatement extends Composite
         return $this->copyrightOwner;
     }
 
-    public function setCopyrightOwner(SimpleXMLElement $xml): void
+    public function setCopyrightOwner(\SimpleXMLElement $xml): void
     {
         $this->copyrightOwner[] = CopyrightOwner::buildFromXml($xml, $this);
     }

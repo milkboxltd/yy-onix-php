@@ -7,6 +7,8 @@ use AragornYang\Onix\CodeLists\CodeList152IllustratedNotIllustrated;
 use AragornYang\Onix\CodeLists\CodeList2ProductComposition;
 use AragornYang\Onix\CodeLists\CodeList91CountryCodeISO31661;
 use AragornYang\Onix\Composites\Composite;
+use AragornYang\Onix\Composites\V30\Collection;
+use AragornYang\Onix\Composites\V30\ProductPart;
 use AragornYang\Onix\ProductFeatures\HasAudiences;
 use AragornYang\Onix\ProductFeatures\HasContributors;
 use AragornYang\Onix\ProductFeatures\HasEditionNumber;
@@ -20,7 +22,6 @@ use AragornYang\Onix\ProductFeatures\HasMeasures;
 use AragornYang\Onix\ProductFeatures\HasProductForm;
 use AragornYang\Onix\ProductFeatures\HasSubjects;
 use AragornYang\Onix\ProductFeatures\V30\HasTitleDetails;
-use SimpleXMLElement;
 
 class DescriptiveDetail extends Composite
 {
@@ -84,7 +85,7 @@ class DescriptiveDetail extends Composite
         return $this->countryOfManufacture ? $this->countryOfManufacture->desc() : '';
     }
 
-    public function setCollection(SimpleXMLElement $xml): void
+    public function setCollection(\SimpleXMLElement $xml): void
     {
         $this->collections[] = Collection::buildFromXml($xml, $this);
     }
@@ -94,7 +95,7 @@ class DescriptiveDetail extends Composite
         return $this->collections;
     }
 
-    public function setProductPart(SimpleXMLElement $xml): void
+    public function setProductPart(\SimpleXMLElement $xml): void
     {
         $this->productParts[] = ProductPart::buildFromXml($xml, $this);
     }

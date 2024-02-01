@@ -4,7 +4,9 @@ namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\Contributor;
 use AragornYang\Onix\Composites\V30\DescriptiveDetail;
-use SimpleXMLElement;
+use AragornYang\Onix\Composites\V30\Product30;
+use AragornYang\Onix\Composites\V30\TitleDetail;
+use AragornYang\Onix\Composites\V30\TitleElement;
 
 trait HasDescriptiveDetail
 {
@@ -15,8 +17,8 @@ trait HasDescriptiveDetail
     {
         return $this->descriptiveDetail;
     }
-
-    public function setDescriptiveDetail(SimpleXMLElement $xml): void
+    
+    public function setDescriptiveDetail(\SimpleXMLElement $xml): void
     {
         /** @var DescriptiveDetail $descriptiveDetail */
         $this->descriptiveDetail = DescriptiveDetail::buildFromXml($xml, $this);

@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\WorkIdentifier;
-use SimpleXMLElement;
 
 trait HasWorkIdentifiers
 {
@@ -18,7 +17,7 @@ trait HasWorkIdentifiers
         return $this->workIdentifiers;
     }
 
-    public function setWorkIdentifier(SimpleXMLElement $xml): void
+    public function setWorkIdentifier(\SimpleXMLElement $xml): void
     {
         $this->workIdentifiers[] = WorkIdentifier::buildFromXml($xml, $this);
     }

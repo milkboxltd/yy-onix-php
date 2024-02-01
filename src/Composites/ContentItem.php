@@ -2,8 +2,6 @@
 
 namespace AragornYang\Onix\Composites;
 
-use SimpleXMLElement;
-
 /**
  * @see PR.18 Content items in Onix Spec 2.1
  * Class ContentItem
@@ -25,7 +23,7 @@ class ContentItem extends Composite
         return $this->textItem;
     }
 
-    public function setTextItem(SimpleXMLElement $xml): void
+    public function setTextItem(\SimpleXMLElement $xml): void
     {
         $this->textItem = TextItem::buildFromXml($xml, $this);
     }

@@ -3,7 +3,6 @@
 namespace AragornYang\Onix\ProductFeatures;
 
 use AragornYang\Onix\Composites\ContentItem;
-use SimpleXMLElement;
 
 trait HasContentItems
 {
@@ -27,7 +26,7 @@ trait HasContentItems
         return $this->contentItems;
     }
 
-    public function setContentItem(SimpleXMLElement $xml): void
+    public function setContentItem(\SimpleXMLElement $xml): void
     {
         $this->contentItems[] = ContentItem::buildFromXml($xml, $this);
     }

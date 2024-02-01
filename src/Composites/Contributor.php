@@ -4,11 +4,10 @@ namespace AragornYang\Onix\Composites;
 
 use AragornYang\Onix\CodeInList;
 use AragornYang\Onix\CodeLists\CodeList17ContributorRole;
-use AragornYang\Onix\CodeLists\CodeList49RegionCode;
 use AragornYang\Onix\CodeLists\CodeList91CountryCodeISO31661;
-use AragornYang\Onix\ProductFeatures\HasLanguageCode;
+use AragornYang\Onix\CodeLists\CodeList49RegionCode;
 use AragornYang\Onix\ProductFeatures\HasWebsite;
-use SimpleXMLElement;
+use AragornYang\Onix\ProductFeatures\HasLanguageCode;
 
 /**
  * @see PR.8 Authorship in Onix Spec 2.1
@@ -78,7 +77,7 @@ class Contributor extends Composite
         return $this->sequenceNumber;
     }
 
-    public function setSequenceNumber(SimpleXMLElement $sequenceNumber): void
+    public function setSequenceNumber(\SimpleXMLElement $sequenceNumber): void
     {
         $this->sequenceNumber = (int)$sequenceNumber;
     }
@@ -146,7 +145,7 @@ class Contributor extends Composite
         return $this->professionalAffiliations;
     }
 
-    public function setProfessionalAffiliation(SimpleXMLElement $xml): void
+    public function setProfessionalAffiliation(\SimpleXMLElement $xml): void
     {
         $this->professionalAffiliations[] = ProfessionalAffiliation::buildFromXml($xml, $this);
     }
